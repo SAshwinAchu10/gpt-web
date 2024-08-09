@@ -31,7 +31,8 @@ export default function FitnessQuestions() {
     const [isSecondLevelInfoShown, setIsSecondLevelInfoShown] = useState(false);
     const [firstLevelInfo, setFirstLevelInfo] = useState(undefined);
     const [secondLevelInfo, setSecondLevelInfo] = useState(undefined);
-    const [loading, setLoading] = useState(false);
+    const [loadingOne, setOneLoading] = useState(false);
+    const [loadingTwo, setTwoLoading] = useState(false);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -65,41 +66,35 @@ export default function FitnessQuestions() {
     useEffect(() => {
 
         async function fetchGPT(input, level) {
-            // const response = await fetch(
-            //    `${API_BASE_URL}/api/chat`, {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({ message: input }),
-            // });
-            // const data = await response.json();
-            // console.log('data: ', data);
+            const response = await fetch(
+               `${API_BASE_URL}/api/chat`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: input }),
+            });
+            const data = await response.json();
             if (level == 1) {
-                localStorage.setItem('1level', `"For a 12-year-old female with a height of 100 cm and weight of 31 kg, it is important to focus on a balanced diet that includes a variety of fruits, vegetables, whole grains, lean proteins, and dairy products. Make sure to eat regular meals and snacks to maintain energy levels and support growth and development. It is also important to stay hydrated by drinking plenty of water throughout the day.
-            In terms of fitness, focus on engaging in regular physical activity that includes a mix of aerobic exercises (such as running, swimming, or cycling) and strength training exercises (such as push-ups, squats, or lunges). Aim for at least 60 minutes of physical activity each day to maintain a healthy weight, build strength, and improve overall fitness levels. Prioritize activities that are enjoyable and can be done safely and comfortably at your age and fitness level."`)
-
-                setFirstLevelInfo(`"For a 12-year-old female with a height of 100 cm and weight of 31 kg, it is important to focus on a balanced diet that includes a variety of fruits, vegetables, whole grains, lean proteins, and dairy products. Make sure to eat regular meals and snacks to maintain energy levels and support growth and development. It is also important to stay hydrated by drinking plenty of water throughout the day.
-            In terms of fitness, focus on engaging in regular physical activity that includes a mix of aerobic exercises (such as running, swimming, or cycling) and strength training exercises (such as push-ups, squats, or lunges). Aim for at least 60 minutes of physical activity each day to maintain a healthy weight, build strength, and improve overall fitness levels. Prioritize activities that are enjoyable and can be done safely and comfortably at your age and fitness level."`);
+                setFirstLevelInfo(data?.reply);
+                localStorage.setItem('1level', data?.reply)
 
             }
             if (level == 2) {
-                localStorage.setItem('2level', `"For a 12-year-old female with a height of 100 cm and weight of 31 kg, it is important to focus on a balanced diet that includes a variety of fruits, vegetables, whole grains, lean proteins, and dairy products. Make sure to eat regular meals and snacks to maintain energy levels and support growth and development. It is also important to stay hydrated by drinking plenty of water throughout the day.
-            In terms of fitness, focus on engaging in regular physical activity that includes a mix of aerobic exercises (such as running, swimming, or cycling) and strength training exercises (such as push-ups, squats, or lunges). Aim for at least 60 minutes of physical activity each day to maintain a healthy weight, build strength, and improve overall fitness levels. Prioritize activities that are enjoyable and can be done safely and comfortably at your age and fitness level."`)
-                setSecondLevelInfo(`"For a 12-year-old female with a height of 100 cm and weight of 31 kg, it is important to focus on a balanced diet that includes a variety of fruits, vegetables, whole grains, lean proteins, and dairy products. Make sure to eat regular meals and snacks to maintain energy levels and support growth and development. It is also important to stay hydrated by drinking plenty of water throughout the day.
-            In terms of fitness, focus on engaging in regular physical activity that includes a mix of aerobic exercises (such as running, swimming, or cycling) and strength training exercises (such as push-ups, squats, or lunges). Aim for at least 60 minutes of physical activity each day to maintain a healthy weight, build strength, and improve overall fitness levels. Prioritize activities that are enjoyable and can be done safely and comfortably at your age and fitness level."`);
-
+                localStorage.setItem('2level', data?.reply)
+                setSecondLevelInfo(data?.reply);
             }
-            setLoading(false);
+            setOneLoading(false);
+            setTwoLoading(false);
         }
         if (formData.height && formData?.weight && formData?.gender && formData?.age && !isFirstLevelInfoShown) {
             setIsFirstLevelInfoShown(true);
-            setLoading(true);
+            setOneLoading(true);
             fetchGPT(`my height is ${formData?.height}, weight is ${formData?.weight}, age is ${formData?.age}, gender is ${formData?.gender} some suggestion for diet and fitness with not more than 2 paragraph or 6lines`, 1);
         }
         if (formData.bloodPressure && formData?.sugarLevel && formData?.dietType && formData?.exerciseFrequency && !isSecondLevelInfoShown) {
             setIsSecondLevelInfoShown(true);
-            setLoading(true);
+            setTwoLoading(true);
             fetchGPT(`my blood pressure is ${formData?.bloodPressure}, sugar level is ${formData?.sugarLevel}, diet type is ${formData?.dietType}, exercise frequency is ${formData?.exerciseFrequency} some suggestion for diet and fitness with not more than 2 paragraph or 6lines`, 2);
         }
 
@@ -222,7 +217,7 @@ export default function FitnessQuestions() {
 
 
                             {isFirstLevelInfoShown && <>
-                                {loading ?
+                                {loadingOne ?
                                     <Grid item xs={12} sm={12}>
                                         <Skeleton sx={{ background: 'lightgrey' }} height={40} />
                                         <Skeleton sx={{ background: 'lightgrey' }} height={40} />
@@ -343,7 +338,7 @@ export default function FitnessQuestions() {
                                 </Card>
                             </Grid>
                             {isSecondLevelInfoShown && <>
-                                {loading ?
+                                {loadingTwo ?
                                     <Grid item xs={12} sm={12}>
                                         <Skeleton sx={{ background: 'lightgrey' }} height={40} />
                                         <Skeleton sx={{ background: 'lightgrey' }} height={40} />

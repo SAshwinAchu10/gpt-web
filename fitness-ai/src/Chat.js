@@ -10,20 +10,6 @@ function Chat() {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        getChatHistory();
-        async function getChatHistory() {
-            const response = await fetch(`${API_BASE_URL}/api/chat/history?provider=${provider}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            const data = await response.json();
-            setMessages(data.reverse());
-        }
-    }, [provider])
-
     const addMessage = (message) => {
         setMessages([...messages, ...message]);
     };
