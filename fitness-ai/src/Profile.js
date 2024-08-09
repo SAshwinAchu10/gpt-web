@@ -5,15 +5,18 @@ import ReactMarkdown from 'react-markdown';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import FitbitIcon from '@mui/icons-material/Fitbit';
 import { useNavigate } from 'react-router-dom';  
+import { useSpring, animated } from '@react-spring/web';
 
 const API_BASE_URL = 'http://localhost:3001'
-const theme = createTheme({
-
-});
+const theme = createTheme({});
 
 export default function FitnessQuestions() {
     const navigate = useNavigate(); 
-
+    const paperSpring = useSpring({
+        from: { opacity: 0, transform: 'translateY(20px)' },
+        to: { opacity: 1, transform: 'translateY(0px)' },
+        config: { tension: 200, friction: 20 },
+    });
     const [formData, setFormData] = useState({
         height: '',
         weight: '',
@@ -108,6 +111,8 @@ export default function FitnessQuestions() {
                 background: '#eeeeef'
             }}>
                 <Container fixed sx={{ bgcolor: '#607d8b', borderRadius: 4, p: 6 }}>
+                    <animated.div style={paperSpring}>
+
                     <div style={{
                         textAlign: 'center',
                         alignContent: 'center',
@@ -379,7 +384,8 @@ export default function FitnessQuestions() {
                                 Update Profile
                             </Button>
                         </Box>
-                    </Box>
+                        </Box>
+                        </animated.div>
                 </Container>
             </div>
         </ThemeProvider>

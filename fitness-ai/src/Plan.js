@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Container,
     Grid,
@@ -11,9 +11,16 @@ import {
     Box
 } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
+import { useSpring, animated } from '@react-spring/web';
+
 const API_BASE_URL = 'http://localhost:3001'
 
 function Plan() {
+    const paperSpring = useSpring({
+        from: { opacity: 0, transform: 'translateY(20px)' },
+        to: { opacity: 1, transform: 'translateY(0px)' },
+        config: { tension: 200, friction: 20 },
+    });
     const [planInfo, setPlanInfo] = useState(undefined);
     const [userProfile, setUserProfile] = useState(undefined);
 
@@ -47,7 +54,7 @@ Here are some general tips for improving fitness and developing a healthy diet p
 6. Track your progress and set achievable goals for yourself.
 
 Remember, consistency is key when it comes to improving fitness and developing healthy habits. Listen to your body, and make adjustments as needed to ensure you are taking care of your overall well-being."`);
-           
+
         }
         let userData = localStorage.getItem('profile');
         if (userData) {
@@ -61,60 +68,69 @@ Remember, consistency is key when it comes to improving fitness and developing h
 
     return (
         <Container maxWidth="lg">
-          
+
             <Grid container spacing={3}>
-                <Grid  item mt={2} xs={12} md={4} p={2} spacing={20}>
+                <Grid item mt={2} xs={12} md={4} p={2} spacing={20}>
+
                     <Paper elevation={3} style={{ padding: '16px', height: '100%' }}>
-                        <p style={{
-                            fontWeight: 600,
-                            fontSize: 20
-                        }}>My Health Information</p>
-                        <Divider/>
-                        <List>
-                            <ListItem>
-                                <ListItemText primary="Height" secondary={userProfile?.height} />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText primary="Weight" secondary={userProfile?.weight} />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText primary="Gender" secondary={userProfile?.gender} />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText primary="Age" secondary={userProfile?.age} />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText primary="Blood Pressure" secondary={userProfile?.bloodPressure} />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText primary="Sugar Level" secondary={userProfile?.sugarLevel} />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText primary="Diet Type" secondary={userProfile?.dietType} />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText primary="Exercise Frequency" secondary={userProfile?.exerciseFrequency} />
-                            </ListItem>
-                        </List>
+                        <animated.div style={paperSpring}>
+
+                            <p style={{
+                                fontWeight: 600,
+                                fontSize: 20
+                            }}>My Health Information</p>
+                            <Divider />
+                            <List>
+                                <ListItem>
+                                    <ListItemText primary="Height" secondary={userProfile?.height} />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemText primary="Weight" secondary={userProfile?.weight} />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemText primary="Gender" secondary={userProfile?.gender} />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemText primary="Age" secondary={userProfile?.age} />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemText primary="Blood Pressure" secondary={userProfile?.bloodPressure} />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemText primary="Sugar Level" secondary={userProfile?.sugarLevel} />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemText primary="Diet Type" secondary={userProfile?.dietType} />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemText primary="Exercise Frequency" secondary={userProfile?.exerciseFrequency} />
+                                </ListItem>
+                            </List>
+                        </animated.div>
+
                     </Paper>
                 </Grid>
-                <Grid  item mt={2} xs={8} md={8} p={2} spacing={20}>
+                <Grid item mt={2} xs={8} md={8} p={2} spacing={20}>
                     <Paper elevation={3} style={{ padding: '16px', height: '100%' }}>
-                      <p style={{
-                            fontWeight: 600, fontSize: 26
-                        }}>Here is the Curated Plan to be followed on Daily Basis</p>
-                        <Divider />
-                        {planInfo && <ReactMarkdown
-                            components={{
-                                p: ({ node, ...props }) => <p style={{ fontSize: '18px', fontWeight: 500 }} {...props} />,
-                            }}
-                            style={{
-                                background: 'beige',
-                            }}   >{planInfo}</ReactMarkdown>}
+                        <animated.div style={paperSpring}>
+
+                            <p style={{
+                                fontWeight: 600, fontSize: 26
+                            }}>Here is the Curated Plan to be followed on Daily Basis</p>
+                            <Divider />
+                            {planInfo && <ReactMarkdown
+                                components={{
+                                    p: ({ node, ...props }) => <p style={{ fontSize: '18px', fontWeight: 500 }} {...props} />,
+                                }}
+                                style={{
+                                    background: 'beige',
+                                }}   >{planInfo}</ReactMarkdown>}
+                        </animated.div>
+
                     </Paper>
                 </Grid>
 
-              
+
             </Grid>
         </Container>
     );
