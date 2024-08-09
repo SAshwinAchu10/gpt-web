@@ -7,6 +7,9 @@ import AssistantIcon from '@mui/icons-material/Assistant';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import SlideshowIcon from '@mui/icons-material/Slideshow';
+import FitbitIcon from '@mui/icons-material/Fitbit';
+
+
 function Sidebar() {
     const navigate = useNavigate(); 
 
@@ -28,7 +31,18 @@ function Sidebar() {
                 }}
             >
                 <Toolbar />
-                <div style={{ width: 240 }}>
+                <div style={{ width: 240, textAlign: 'center' }}>
+                    <FitbitIcon sx={{
+                        width: 80,
+                        height: 80,
+                        color: 'white'
+                    }} />
+                    <Divider sx={{
+                        height: '1px',
+                        background: 'grey',
+                        marginTop: 1,
+                        marginBottom: 1
+                    }} />
                     <List sx={{ color: 'white' }}>
                         <ListItem
                             onClick={() => navigate('/profile')}

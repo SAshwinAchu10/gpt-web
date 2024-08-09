@@ -3,7 +3,6 @@ import { Container, Typography, Box, TextField, Button, Card, CardContent, Grid,
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ReactMarkdown from 'react-markdown';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
-import FitbitIcon from '@mui/icons-material/Fitbit';
 import { useNavigate } from 'react-router-dom';  
 import { useSpring, animated } from '@react-spring/web';
 
@@ -114,10 +113,7 @@ export default function FitnessQuestions() {
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                        <FitbitIcon sx={{
-                            width: 80,
-                            height: 80,
-                        }}/>
+                     
                         <Typography variant="h4" align="center" gutterBottom sx={{ color: 'black' }}>
                             Fitness Assessment
                         </Typography>
