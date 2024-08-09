@@ -4,15 +4,20 @@ import Home from './Home';
 import SignIn from './SignIn';
 import Profile from './Profile';
 import Plan from './Plan';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   return (
     <Router>
+      <ToastContainer />
+
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/plans" element={<Plan />} />
+        <Route path="/*" element={<SignIn />} />
       </Routes>
     </Router>
   );

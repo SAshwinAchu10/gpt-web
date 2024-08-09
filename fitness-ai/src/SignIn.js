@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,6 +10,7 @@ import Box from '@mui/material/Box';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';  
+import {  toast } from 'react-toastify';
 
 const defaultTheme = createTheme({
     palette: {
@@ -51,14 +53,22 @@ export default function SignIn({  }) {
     
     const navigate = useNavigate(); 
 
+    useEffect(() => {
+        let loggedIn = localStorage.getItem('loggedin');
+        if (loggedIn) {
+            navigate('/profile');
+        }
+    }, []);
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log('data: ', data);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        if (data.get('email') == 'test@test.com' && data.get('password') == '123456') {
+            localStorage.setItem('loggedin', 'YES');
+            navigate('/profile');
+        } else {
+            toast.error('Invalid Credentials');
+        }
     };
 
     return (
@@ -109,7 +119,7 @@ export default function SignIn({  }) {
                             autoComplete="current-password"
                         />
                         <Button
-                            onClick={() => navigate('/profile') }
+                        
                             type="submit"
                             fullWidth
                             variant="contained"
