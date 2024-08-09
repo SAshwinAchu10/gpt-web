@@ -108,7 +108,7 @@ export default function FitnessQuestions() {
     return (
         <ThemeProvider theme={theme}>
             <div style={{
-                background: '#eeeeef'
+                background: '#fff'
             }}>
                 <Container fixed sx={{ bgcolor: '#FFFFFF', borderRadius: 4, p: 6 }}>
                     <animated.div style={paperSpring}>

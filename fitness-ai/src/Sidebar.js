@@ -5,6 +5,8 @@ import VerifiedUserOutlined from '@mui/icons-material/VerifiedUserOutlined';
 import EventIcon from '@mui/icons-material/Event';
 import AssistantIcon from '@mui/icons-material/Assistant';
 import LogoutIcon from '@mui/icons-material/Logout';
+import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
+
 function Sidebar() {
     const navigate = useNavigate(); 
 
@@ -19,7 +21,7 @@ function Sidebar() {
                     width: 240,
                     flexShrink: 0,
                     '& .MuiDrawer-paper': {
-                        backgroundColor: '#000000',
+                        backgroundColor: '#763AB4',
                         width: 240,
                         boxSizing: 'border-box',
                     },
@@ -31,7 +33,7 @@ function Sidebar() {
                         <ListItem
                             onClick={() => navigate('/profile')}
                             button
-                            sx={{ borderBottom: '1px solid grey' }}
+                            // sx={{ borderBottom: '1px solid grey' }}
                         >
                             <ListItemIcon>
                                 <VerifiedUserOutlined sx={{ color: 'white' }} />
@@ -41,7 +43,7 @@ function Sidebar() {
                         <ListItem
                             onClick={() => navigate('/plans')}
                             button
-                            sx={{ borderBottom: '1px solid grey' }}
+                            // sx={{ borderBottom: '1px solid grey' }}
                         >
                             <ListItemIcon>
                                 <EventIcon sx={{ color: 'white' }} />
@@ -51,7 +53,7 @@ function Sidebar() {
                         <ListItem
                             onClick={() => navigate('/assistant')}
                             button
-                            sx={{ borderBottom: '1px solid grey' }}
+                            // sx={{ borderBottom: '1px solid grey' }}
                         >
                             <ListItemIcon>
                                 <AssistantIcon sx={{ color: 'white' }} />
@@ -59,12 +61,22 @@ function Sidebar() {
                             <ListItemText primary="Health Assistant" sx={{ color: 'white' }} />
                         </ListItem>
                         <ListItem
+                            onClick={() => navigate('/progress')}
+                            button
+                            // sx={{ borderBottom: '1px solid grey' }}
+                        >
+                            <ListItemIcon>
+                                <DirectionsRunIcon sx={{ color: 'white' }} />
+                            </ListItemIcon>
+                            <ListItemText primary="Progress" sx={{ color: 'white' }} />
+                        </ListItem>
+                        <ListItem
                             onClick={() => {
                                 localStorage.clear();
                                 navigate('/sign-in')
                             }}
                             button
-                            sx={{ borderBottom: '1px solid grey' }}
+                            // sx={{ borderBottom: '1px solid grey' }}
                         >
                             <ListItemIcon>
                                 <LogoutIcon sx={{ color: 'white' }} />

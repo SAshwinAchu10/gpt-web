@@ -4,6 +4,7 @@ import Sidebar from './Sidebar';
 import SignIn from './SignIn';  
 import Plan from './Plan'; 
 import Profile from './Profile'; 
+import ProgressTracker from './ProgressTracker';
 
 function Layout() {
   const location = useLocation();
@@ -15,6 +16,7 @@ function Layout() {
         <Routes>
           <Route path="/plans" element={<Plan />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/progress" element={<ProgressTracker />} />
         </Routes>
       </main>
     </div>
