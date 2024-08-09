@@ -5,6 +5,8 @@ import SignIn from './SignIn';
 import Plan from './Plan'; 
 import Profile from './Profile'; 
 import ProgressTracker from './ProgressTracker';
+import Profile from './Profile';
+import Chat from './Chat'; 
 
 function Layout() {
   const location = useLocation();
@@ -17,6 +19,7 @@ function Layout() {
           <Route path="/plans" element={<Plan />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/progress" element={<ProgressTracker />} />
+          <Route path="/assistant" element={<Chat />} />
         </Routes>
       </main>
     </div>

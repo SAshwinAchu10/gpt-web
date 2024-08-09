@@ -1,0 +1,25 @@
+.Message {
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.MessageContent {
+    text-align: start;
+    padding-left: 15px;
+        padding-right: 15px;
+    border-radius: 5px 5px 5px 5px;
+    color: black;
+    font-size: 13px;
+}
+
+.Message.user .MessageContent {
+    background-color: #000000;
+    color: white;
+    align-self: flex-end;
+}
+
+.Message.bot .MessageContent {
+    align-self: flex-start;
+    background-color: lightgrey;
+}

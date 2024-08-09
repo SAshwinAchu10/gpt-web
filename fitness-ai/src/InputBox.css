@@ -1,0 +1,14 @@
+.InputBox {
+    display: flex;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid grey;
+}
+
+.InputBox input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}
