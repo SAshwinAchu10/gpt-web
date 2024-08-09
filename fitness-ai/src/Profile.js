@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import { useNavigate } from 'react-router-dom';  
 import { useSpring, animated } from '@react-spring/web';
+import LottieControl from './Load';
 
 const API_BASE_URL = 'http://3.84.134.26:3001'
 const theme = createTheme({});
@@ -215,9 +216,10 @@ export default function FitnessQuestions() {
                             {isFirstLevelInfoShown && <>
                                 {loadingOne ?
                                     <Grid item xs={12} sm={12}>
+                                        <LottieControl/>
+                                        {/* <Skeleton sx={{ background: 'lightgrey' }} height={40} />
                                         <Skeleton sx={{ background: 'lightgrey' }} height={40} />
-                                        <Skeleton sx={{ background: 'lightgrey' }} height={40} />
-                                        <Skeleton sx={{ background: 'lightgrey' }} height={40} />
+                                        <Skeleton sx={{ background: 'lightgrey' }} height={40} /> */}
                                     </Grid>
                                     : <Grid item xs={12} sm={12}>
                                     <Card variant="outlined" sx={{ bgcolor: '#e5f3ff' }}>
@@ -336,9 +338,10 @@ export default function FitnessQuestions() {
                             {isSecondLevelInfoShown && <>
                                 {loadingTwo ?
                                     <Grid item xs={12} sm={12}>
+                                        <LottieControl/>
+                                        {/* <Skeleton sx={{ background: 'lightgrey' }} height={40} />
                                         <Skeleton sx={{ background: 'lightgrey' }} height={40} />
-                                        <Skeleton sx={{ background: 'lightgrey' }} height={40} />
-                                        <Skeleton sx={{ background: 'lightgrey' }} height={40} />
+                                        <Skeleton sx={{ background: 'lightgrey' }} height={40} /> */}
                                     </Grid>
                                     : <Grid item xs={12} sm={12}>
                                         <Card variant="outlined" sx={{ bgcolor: '#e5f3ff' }}>

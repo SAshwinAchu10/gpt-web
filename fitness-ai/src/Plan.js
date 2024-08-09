@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
 import { useSpring, animated } from '@react-spring/web';
+import LottieControl from './Load';
 
 const API_BASE_URL = 'http://3.84.134.26:3001'
 
@@ -111,6 +112,8 @@ function Plan() {
                         <animated.div style={paperSpring}>
 
                             {loading ? <>
+                            <LottieControl/>
+                                {/* <Skeleton height={50} />
                                 <Skeleton height={50} />
                                 <Skeleton height={50} />
                                 <Skeleton height={50} />
@@ -122,8 +125,7 @@ function Plan() {
                                 <Skeleton height={50} />
                                 <Skeleton height={50} />
                                 <Skeleton height={50} />
-                                <Skeleton height={50} />
-                                <Skeleton height={50} />
+                                <Skeleton height={50} /> */}
                             </> :
                                 <>
                                     <p style={{

@@ -49,7 +49,7 @@ const defaultTheme = createTheme({
         },
     },
 });
-export default function SignIn({ }) {
+export default function SignIn() {
     const navigate = useNavigate();
     useEffect(() => {
         let loggedIn = localStorage.getItem('loggedin');
@@ -120,7 +120,6 @@ export default function SignIn({ }) {
                             }}
                         />
                         <Button
-                            onClick={() => navigate('/profile')}
                             type="submit"
                             fullWidth
                             variant="contained"

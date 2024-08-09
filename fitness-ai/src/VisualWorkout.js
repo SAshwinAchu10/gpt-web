@@ -31,6 +31,8 @@ function VideoListPage() {
                     body: JSON.stringify({ message: input }),
                 });
                 const data = await response.json();
+                console.log(data,"api")
+
                 let exactJson = extractJson(data?.reply)
                 setVideos(exactJson);
                 localStorage.setItem('videos', JSON.stringify(exactJson))
@@ -77,8 +79,8 @@ function VideoListPage() {
 
             <Grid container spacing={4}>
                 {loading ?
-                    [1, 2, 3].map((video) =>
-                        <Grid item xs={12} sm={6} md={4} key={video.id}>
+                    [1, 2, 3].map((video,index) =>
+                        <Grid item xs={12} sm={6} md={4} key={index}>
                                 <Skeleton width={'100%'} height={'900%'} />
                                 
                             </Grid>
@@ -87,7 +89,7 @@ function VideoListPage() {
                     videos?.map((video) => (
                         <Grid item xs={12} sm={6} md={4} key={video.id}>
                             <Card>
-                                <CardActionArea href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank">
+                                <CardActionArea href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" style={{height:"200px"}}>
                                     <CardMedia
                                         component="img"
                                         height="140"
