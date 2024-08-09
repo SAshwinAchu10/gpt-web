@@ -4,12 +4,16 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ReactMarkdown from 'react-markdown';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import FitbitIcon from '@mui/icons-material/Fitbit';
+import { useNavigate } from 'react-router-dom';  
+
 const API_BASE_URL = 'http://localhost:3001'
 const theme = createTheme({
 
 });
 
 export default function FitnessQuestions() {
+    const navigate = useNavigate(); 
+
     const [formData, setFormData] = useState({
         height: '',
         weight: '',
@@ -34,22 +38,19 @@ export default function FitnessQuestions() {
     };
 
     const handleSubmit = () => {
-        console.log('User Data:', formData);
         localStorage.setItem('profile', JSON.stringify(formData));
+        navigate('/plans')
     };
     useEffect(() => {
         let localForm = localStorage.getItem('profile');
-        console.log('localForm: ', localForm);
         if (localForm) {
             setFormData(JSON.parse(localForm))
         }
         let oneLevel = localStorage.getItem('1level');
-        console.log('1level: ', oneLevel);
         if (oneLevel) {
             setFirstLevelInfo(oneLevel)
         }
         let secondLevel = localStorage.getItem('2level');
-        console.log('2level: ', secondLevel);
         if (secondLevel) {
             setSecondLevelInfo(secondLevel)
         }
