@@ -110,7 +110,7 @@ export default function FitnessQuestions() {
             <div style={{
                 background: '#eeeeef'
             }}>
-                <Container fixed sx={{ bgcolor: '#607d8b', borderRadius: 4, p: 6 }}>
+                <Container fixed sx={{ bgcolor: '#FFFFFF', borderRadius: 4, p: 6 }}>
                     <animated.div style={paperSpring}>
 
                     <div style={{

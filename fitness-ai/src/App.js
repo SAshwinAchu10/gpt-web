@@ -1,23 +1,32 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './Home';
-import SignIn from './SignIn';
-import Profile from './Profile';
-import Plan from './Plan';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import Sidebar from './Sidebar';  
+import SignIn from './SignIn';  
+import Plan from './Plan'; 
+import Profile from './Profile'; 
 
+function Layout() {
+  const location = useLocation();
+
+  return (
+    <div style={{ display: 'flex' }}>
+      {<Sidebar />}
+      <main style={{ flexGrow: 1, padding: '16px' }}>
+        <Routes>
+          <Route path="/plans" element={<Plan />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </main>
+    </div>
+  );
+}
 
 function App() {
   return (
     <Router>
-      <ToastContainer />
-
       <Routes>
         <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/plans" element={<Plan />} />
-        <Route path="/*" element={<SignIn />} />
+        <Route path="/*" element={<Layout />} />
       </Routes>
     </Router>
   );

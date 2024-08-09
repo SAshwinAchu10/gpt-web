@@ -115,12 +115,12 @@ Remember, consistency is key when it comes to improving fitness and developing h
                         <animated.div style={paperSpring}>
 
                             <p style={{
-                                fontWeight: 600, fontSize: 26
+                                fontWeight: 600, fontSize: 20
                             }}>Here is the Curated Plan to be followed on Daily Basis</p>
                             <Divider />
                             {planInfo && <ReactMarkdown
                                 components={{
-                                    p: ({ node, ...props }) => <p style={{ fontSize: '18px', fontWeight: 500 }} {...props} />,
+                                    p: ({ node, ...props }) => <p style={{ fontSize: '16px', fontWeight: 500 }} {...props} />,
                                 }}
                                 style={{
                                     background: 'beige',

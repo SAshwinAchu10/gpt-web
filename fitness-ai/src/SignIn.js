@@ -9,13 +9,14 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';  
-import {  toast } from 'react-toastify';
-
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import fitnessLady from "./assets/lady.png"
+import './css/global.css'
 const defaultTheme = createTheme({
     palette: {
         primary: {
-            main: '#1e88e5',
+            main: '#1E88E5',
         },
     },
     typography: {
@@ -34,7 +35,7 @@ const defaultTheme = createTheme({
                     borderRadius: '8px',
                     textTransform: 'none',
                     '&:hover': {
-                        backgroundColor: '#1976d2',
+                        backgroundColor: '#1976D2',
                     },
                 },
             },
@@ -48,18 +49,14 @@ const defaultTheme = createTheme({
         },
     },
 });
-
-export default function SignIn({  }) {
-    
-    const navigate = useNavigate(); 
-
+export default function SignIn({ }) {
+    const navigate = useNavigate();
     useEffect(() => {
         let loggedIn = localStorage.getItem('loggedin');
         if (loggedIn) {
             navigate('/profile');
         }
     }, []);
-
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -70,26 +67,24 @@ export default function SignIn({  }) {
             toast.error('Invalid Credentials');
         }
     };
-
     return (
-        <ThemeProvider theme={defaultTheme}>
-            <Container component="main" maxWidth="xs" sx={{
-                backgroundColor: '#fff',
-                borderRadius: 4,
-                boxShadow: 3,
-                padding: 4,
-                mt: 8,
-            }}>
-                <CssBaseline />
+        <div>
+            <div className='bg'>
+                <Box className="left-bg">
+                    <img src={fitnessLady} alt="bg" style={{ height: "100vh" }} />
+                </Box>
                 <Box
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
+                        justifyContent: "center",
+                        width: "50%",
+                        height: "100%",
                     }}
                 >
-                    <Avatar  sizes='large' sx={{ m: 1, bgcolor: 'primary.main', height: 80, width:80 }}>
-                        <FitnessCenterIcon   />
+                    <Avatar sizes='large' sx={{ m: 1, bgcolor: 'primary.main', height: 80, width: 80 }}>
+                        <FitnessCenterIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Hello, Health Nut!
@@ -107,6 +102,9 @@ export default function SignIn({  }) {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            sx={{
+                                background: "#fff"
+                            }}
                         />
                         <TextField
                             margin="normal"
@@ -117,20 +115,28 @@ export default function SignIn({  }) {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            sx={{
+                                background: "#fff"
+                            }}
                         />
                         <Button
-                        
+                            onClick={() => navigate('/profile')}
                             type="submit"
                             fullWidth
                             variant="contained"
                             color="primary"
-                            sx={{ mt: 3, mb: 2, height: 60 }}
+                            sx={{
+                                mt: 3, mb: 2, height: 60, background: "#763AB4",
+                                "&:hover": {
+                                    backgroundColor: "#763AB4"
+                                }
+                            }}
                         >
                             MAKE ME FIT
                         </Button>
                     </Box>
                 </Box>
-            </Container>
-        </ThemeProvider>
+            </div>
+        </div>
     );
 }
