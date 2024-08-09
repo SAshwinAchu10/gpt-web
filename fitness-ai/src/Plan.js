@@ -31,17 +31,17 @@ function Plan() {
 
         async function fetchGPT(input) {
             setLoading(true);
-            // const response = await fetch(
-            //    `${API_BASE_URL}/api/chat`, {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({ message: input }),
-            // });
-            // const data = await response.json();
-            // setPlanInfo(data?.reply);
-            // setLoading(false);
+            const response = await fetch(
+               `${API_BASE_URL}/api/chat`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: input }),
+            });
+            const data = await response.json();
+            setPlanInfo(data?.reply);
+            setLoading(false);
 
         }
         let userData = localStorage.getItem('profile');
