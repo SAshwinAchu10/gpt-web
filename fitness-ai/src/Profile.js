@@ -87,6 +87,7 @@ export default function FitnessQuestions() {
             In terms of fitness, focus on engaging in regular physical activity that includes a mix of aerobic exercises (such as running, swimming, or cycling) and strength training exercises (such as push-ups, squats, or lunges). Aim for at least 60 minutes of physical activity each day to maintain a healthy weight, build strength, and improve overall fitness levels. Prioritize activities that are enjoyable and can be done safely and comfortably at your age and fitness level."`);
 
             }
+            setLoading(false);
         }
         if (formData.height && formData?.weight && formData?.gender && formData?.age && !isFirstLevelInfoShown) {
             setIsFirstLevelInfoShown(true);
