@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Sidebar from './Sidebar';  
 import SignIn from './SignIn';  
 import Plan from './Plan'; 
-import Profile from './Profile'; 
 import ProgressTracker from './ProgressTracker';
 import Profile from './Profile';
 import Chat from './Chat'; 
@@ -13,7 +12,7 @@ function Layout() {
 
   return (
     <div style={{ display: 'flex' }}>
-      {<Sidebar />}
+      {location.pathname !== '/login' && <Sidebar />}
       <main style={{ flexGrow: 1, padding: '16px' }}>
         <Routes>
           <Route path="/plans" element={<Plan />} />
