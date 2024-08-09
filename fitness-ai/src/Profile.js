@@ -376,10 +376,11 @@ export default function FitnessQuestions() {
                             }
                         </Grid>
                         <Box sx={{ textAlign: 'center', mt: 4 }}>
-                            <Button
-                                variant="contained"
+                                <Button
+                                    color='inherit'
+                                    variant='outlined'
                                 onClick={handleSubmit}
-                                sx={{ borderRadius: '8px', background: 'black' }}
+                                    sx={{ padding: 1.5, borderRadius: '8px',   color: 'black' }}
                             >
                                 Update Profile
                             </Button>
