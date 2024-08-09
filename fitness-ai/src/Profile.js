@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Box, TextField, Button, Card, CardContent, Grid, MenuItem, RadioGroup, FormControlLabel, Radio } from '@mui/material';
+import { Container, Typography, Box, TextField, Button, Card, CardContent, Grid, MenuItem, RadioGroup, FormControlLabel, Radio, Skeleton } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ReactMarkdown from 'react-markdown';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
@@ -28,6 +28,7 @@ export default function FitnessQuestions() {
     const [isSecondLevelInfoShown, setIsSecondLevelInfoShown] = useState(false);
     const [firstLevelInfo, setFirstLevelInfo] = useState(undefined);
     const [secondLevelInfo, setSecondLevelInfo] = useState(undefined);
+    const [loading, setLoading] = useState(false);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -49,10 +50,12 @@ export default function FitnessQuestions() {
         let oneLevel = localStorage.getItem('1level');
         if (oneLevel) {
             setFirstLevelInfo(oneLevel)
+            setIsFirstLevelInfoShown(true);
         }
         let secondLevel = localStorage.getItem('2level');
         if (secondLevel) {
             setSecondLevelInfo(secondLevel)
+            setIsSecondLevelInfoShown(true);
         }
     }, [])
 
@@ -87,10 +90,12 @@ export default function FitnessQuestions() {
         }
         if (formData.height && formData?.weight && formData?.gender && formData?.age && !isFirstLevelInfoShown) {
             setIsFirstLevelInfoShown(true);
+            setLoading(true);
             fetchGPT(`my height is ${formData?.height}, weight is ${formData?.weight}, age is ${formData?.age}, gender is ${formData?.gender} some suggestion for diet and fitness with not more than 2 paragraph or 6lines`, 1);
         }
         if (formData.bloodPressure && formData?.sugarLevel && formData?.dietType && formData?.exerciseFrequency && !isSecondLevelInfoShown) {
             setIsSecondLevelInfoShown(true);
+            setLoading(true);
             fetchGPT(`my blood pressure is ${formData?.bloodPressure}, sugar level is ${formData?.sugarLevel}, diet type is ${formData?.dietType}, exercise frequency is ${formData?.exerciseFrequency} some suggestion for diet and fitness with not more than 2 paragraph or 6lines`, 2);
         }
 
@@ -210,29 +215,37 @@ export default function FitnessQuestions() {
                             </Grid>
 
 
-                            {firstLevelInfo && <Grid item xs={12} sm={12}>
-                                <Card variant="outlined" sx={{ bgcolor: '#e5f3ff' }}>
-                                    <CardContent>
-                                        <div style={{
-                                            display: 'flex', alignItems: 'center', textAlign: 'center'
-                                        }}>
-                                            <AutoFixHighIcon style={{
-                                                paddingRight: 10,
-                                            }} />
-                                            <Typography  >
-                                                AI Recommendation
-                                            </Typography>
-                                        </div>
-                                        <ReactMarkdown
-                                            components={{
-                                                p: ({ node, ...props }) => <p style={{ fontSize: '11px', fontWeight: 600 }} {...props} />,
-                                            }}
-                                            style={{
-                                                background: 'beige',
-                                            }}   >{firstLevelInfo}</ReactMarkdown>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
+                            {isFirstLevelInfoShown && <>
+                                {loading ?
+                                    <Grid item xs={12} sm={12}>
+                                        <Skeleton sx={{ background: 'lightgrey' }} height={40} />
+                                        <Skeleton sx={{ background: 'lightgrey' }} height={40} />
+                                        <Skeleton sx={{ background: 'lightgrey' }} height={40} />
+                                    </Grid>
+                                    : <Grid item xs={12} sm={12}>
+                                    <Card variant="outlined" sx={{ bgcolor: '#e5f3ff' }}>
+                                        <CardContent>
+                                            <div style={{
+                                                display: 'flex', alignItems: 'center', textAlign: 'center'
+                                            }}>
+                                                <AutoFixHighIcon style={{
+                                                    paddingRight: 10,
+                                                }} />
+                                                <Typography  >
+                                                    AI Recommendation
+                                                </Typography>
+                                            </div>
+                                            <ReactMarkdown
+                                                components={{
+                                                    p: ({ node, ...props }) => <p style={{ fontSize: '11px', fontWeight: 600 }} {...props} />,
+                                                }}
+                                                style={{
+                                                    background: 'beige',
+                                                }}   >{firstLevelInfo}</ReactMarkdown>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>}
+                            </>
                             }
 
                             <Grid item xs={12} sm={6}>
@@ -323,29 +336,37 @@ export default function FitnessQuestions() {
                                     </CardContent>
                                 </Card>
                             </Grid>
-                            {secondLevelInfo && <Grid item xs={12} sm={12}>
-                                <Card variant="outlined" sx={{ bgcolor: '#e5f3ff' }}>
-                                    <CardContent>
-                                        <div style={{
-                                            display: 'flex', alignItems: 'center', textAlign: 'center'
-                                        }}>
-                                            <AutoFixHighIcon style={{
-                                                paddingRight: 10,
-                                            }} />
-                                            <Typography  >
-                                                AI Recommendation
-                                            </Typography>
-                                        </div>
-                                        <ReactMarkdown
-                                            components={{
-                                                p: ({ node, ...props }) => <p style={{ fontSize: '11px', fontWeight: 600 }} {...props} />,
-                                            }}
-                                            style={{
-                                                background: 'beige',
-                                            }}   >{secondLevelInfo}</ReactMarkdown>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
+                            {isSecondLevelInfoShown && <>
+                                {loading ?
+                                    <Grid item xs={12} sm={12}>
+                                        <Skeleton sx={{ background: 'lightgrey' }} height={40} />
+                                        <Skeleton sx={{ background: 'lightgrey' }} height={40} />
+                                        <Skeleton sx={{ background: 'lightgrey' }} height={40} />
+                                    </Grid>
+                                    : <Grid item xs={12} sm={12}>
+                                        <Card variant="outlined" sx={{ bgcolor: '#e5f3ff' }}>
+                                            <CardContent>
+                                                <div style={{
+                                                    display: 'flex', alignItems: 'center', textAlign: 'center'
+                                                }}>
+                                                    <AutoFixHighIcon style={{
+                                                        paddingRight: 10,
+                                                    }} />
+                                                    <Typography  >
+                                                        AI Recommendation
+                                                    </Typography>
+                                                </div>
+                                                <ReactMarkdown
+                                                    components={{
+                                                        p: ({ node, ...props }) => <p style={{ fontSize: '11px', fontWeight: 600 }} {...props} />,
+                                                    }}
+                                                    style={{
+                                                        background: 'beige',
+                                                    }}   >{secondLevelInfo}</ReactMarkdown>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>}
+                            </>
                             }
                         </Grid>
                         <Box sx={{ textAlign: 'center', mt: 4 }}>
