@@ -83,7 +83,7 @@ export default function SignIn({ }) {
                         height: "100%",
                     }}
                 >
-                    <Avatar sizes='large' sx={{ m: 1, bgcolor: '#763AB4', height: 80, width: 80 }}>
+                    <Avatar sizes='large' sx={{ m: 1, bgcolor: '#441D6B', height: 80, width: 80 }}>
                         <FitnessCenterIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
@@ -126,9 +126,9 @@ export default function SignIn({ }) {
                             variant="contained"
                             color="primary"
                             sx={{
-                                mt: 3, mb: 2, height: 60, background: "#763AB4",
+                                mt: 3, mb: 2, height: 60, background: "#441D6B",
                                 "&:hover": {
-                                    backgroundColor: "#763AB4"
+                                    backgroundColor: "#441D6B"
                                 }
                             }}
                         >

@@ -24,7 +24,7 @@ function Sidebar() {
                     width: 240,
                     flexShrink: 0,
                     '& .MuiDrawer-paper': {
-                        backgroundColor: '#763AB4',
+                        backgroundColor: '#441D6B',
                         width: 240,
                         boxSizing: 'border-box',
                     },
