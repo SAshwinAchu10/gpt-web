@@ -35,6 +35,8 @@ const ProgressTracker = () => {
     };
 
     const getCompletedCount = () => {
+        console.log('workouts.filter(workout => workout.completed).length: ', workouts.filter(workout => workout.completed).length);
+
         return workouts.filter(workout => workout.completed).length;
     };
 
@@ -46,12 +48,15 @@ const ProgressTracker = () => {
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             {/* Left side with workout options */}
-            <div style={{ width: '50%', padding: '20px' }}>
+            <div style={{ width: '80%', padding: '20px' }}>
                 <h1>Progress</h1>
                 <h2>Workout - Week 1</h2>
                 <ul>
                     {workouts.map(workout => (
-                        <li key={workout.id}>
+                        <li key={workout.id} style={{
+                            padding: 10,
+                            fontSize: 18
+                        }}>
                             <label>
                                 <input
                                     type="checkbox"
@@ -71,8 +76,39 @@ const ProgressTracker = () => {
 
             {/* Right side with the badge */}
             <div style={{ width: '50%', padding: '20px', textAlign: 'center' }}>
-                {showBadge && (
-                    <ProgressBadge completed={getCompletedCount()} total={workouts.length} />
+                { (
+                    getCompletedCount() == 7 ?
+                        <>
+                            <img style={{
+                                width: '60%',
+                                height: '60%',
+                            }} src={require('./assets/first.png')}></img>
+                            <p style={{
+                            fontWeight: 600
+                        }}>Excellent Workout!</p>
+                        </>
+                        :
+                        getCompletedCount() > 5 ?
+                            <>
+                                <img style={{
+                                    width: '60%',
+                                    height: '60%',
+                                }} src={require('./assets/second.png')}></img>
+                                <p style={{
+                                    fontWeight: 600
+                                }}>Good Workout!</p>
+                            </>
+                            :
+                                <>
+                                    <img style={{
+                                        width: '60%',
+                                        height: '60%',
+                                    }} src={require('./assets/sick.png')}></img>
+                                    <p style={{
+                                        fontWeight: 600
+                                    }}>Average</p>
+                                </>
+
                 )}
             </div>
         </div>
