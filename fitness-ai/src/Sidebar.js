@@ -6,7 +6,7 @@ import EventIcon from '@mui/icons-material/Event';
 import AssistantIcon from '@mui/icons-material/Assistant';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-
+import SlideshowIcon from '@mui/icons-material/Slideshow';
 function Sidebar() {
     const navigate = useNavigate(); 
 
@@ -63,12 +63,22 @@ function Sidebar() {
                         <ListItem
                             onClick={() => navigate('/progress')}
                             button
-                            // sx={{ borderBottom: '1px solid grey' }}
+                        // sx={{ borderBottom: '1px solid grey' }}
                         >
                             <ListItemIcon>
                                 <DirectionsRunIcon sx={{ color: 'white' }} />
                             </ListItemIcon>
-                            <ListItemText primary="Progress" sx={{ color: 'white' }} />
+                            <ListItemText primary="Progress Tracker" sx={{ color: 'white' }} />
+                        </ListItem>
+                        <ListItem
+                            onClick={() => navigate('/visual-workouts')}
+                            button
+                        // sx={{ borderBottom: '1px solid grey' }}
+                        >
+                            <ListItemIcon>
+                                <SlideshowIcon sx={{ color: 'white' }} />
+                            </ListItemIcon>
+                            <ListItemText primary="Visual Workouts" sx={{ color: 'white' }} />
                         </ListItem>
                         <ListItem
                             onClick={() => {

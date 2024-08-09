@@ -5,6 +5,7 @@ import SignIn from './SignIn';
 import Plan from './Plan'; 
 import ProgressTracker from './ProgressTracker';
 import Profile from './Profile';
+import VisualWorkout from './VisualWorkout';
 import Chat from './Chat'; 
 
 function Layout() {
@@ -19,6 +20,7 @@ function Layout() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/progress" element={<ProgressTracker />} />
           <Route path="/assistant" element={<Chat />} />
+          <Route path="/visual-workouts" element={<VisualWorkout />} />
         </Routes>
       </main>
     </div>

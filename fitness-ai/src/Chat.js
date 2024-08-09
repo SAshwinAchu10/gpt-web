@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import ChatBox from './ChatBox';
 import InputBox from './InputBox';
-const API_BASE_URL = 'http://localhost:3001'
+const API_BASE_URL = 'http://3.84.134.26:3001'
 
 function Chat() {
     const [provider, setProvider] = useState(localStorage.getItem('provider') ?? 'openai');

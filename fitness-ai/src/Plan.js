@@ -14,7 +14,7 @@ import {
 import ReactMarkdown from 'react-markdown';
 import { useSpring, animated } from '@react-spring/web';
 
-const API_BASE_URL = 'http://localhost:3001'
+const API_BASE_URL = 'http://3.84.134.26:3001'
 
 function Plan() {
     const paperSpring = useSpring({

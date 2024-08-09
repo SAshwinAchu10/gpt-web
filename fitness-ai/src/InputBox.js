@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './InputBox.css';
 import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
-const API_BASE_URL = 'http://localhost:3001'
+const API_BASE_URL = 'http://3.84.134.26:3001'
 
 const InputBox = ({ addMessage, addLoading, provider }) => {
     const [input, setInput] = useState('');
