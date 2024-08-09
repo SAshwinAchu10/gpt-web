@@ -59,7 +59,10 @@ function Sidebar() {
                             <ListItemText primary="Health Assistant" sx={{ color: 'white' }} />
                         </ListItem>
                         <ListItem
-                            onClick={() => navigate('/logout')}
+                            onClick={() => {
+                                localStorage.clear();
+                                navigate('/sign-in')
+                            }}
                             button
                             sx={{ borderBottom: '1px solid grey' }}
                         >

@@ -83,7 +83,7 @@ export default function SignIn({ }) {
                         height: "100%",
                     }}
                 >
-                    <Avatar sizes='large' sx={{ m: 1, bgcolor: 'primary.main', height: 80, width: 80 }}>
+                    <Avatar sizes='large' sx={{ m: 1, bgcolor: '#763AB4', height: 80, width: 80 }}>
                         <FitnessCenterIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
